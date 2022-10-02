@@ -1,0 +1,21 @@
+.country{
+    margin: 10px;
+    padding: 10px;
+    border: 2px solid red;
+    text-align: center;
+}
+.country img{
+    height: 200px;
+    width: 200px;
+}
+.country .btn{
+    background-color: aqua;
+    padding: 10px 20px;
+    border-radius: 50px;
+    display: block;
+    text-align: center;
+
+
+}
+
+

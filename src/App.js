@@ -1,5 +1,8 @@
 
 import React, {useState, useEffect} from 'react';
+import AddCountry from './components/AddCountry/AddCountry';
+import Country from './components/Country/Country';
+import Post from './components/Post/Post';
 
 function App() {
   const products = [
@@ -12,19 +15,42 @@ function App() {
   const productName = products.map(product => product.name);
 
 
+  const  [countries , setCountries] =useState([]);
+  const [addCountry , setAddCounty] = useState([]);
+
+    useEffect(() => {
+        fetch('https://restcountries.com/v3.1/all')
+        .then(res => res.json())
+        .then(data =>  setCountries(data))
+        .catch(error => console.log(error));
+    },[])
+
+
   
-  
+    const handleAddCountry = (country) => {
+        const newAddCountry = [...addCountry, country];
+        setAddCounty(newAddCountry);
+    }
   
   return (
     <div>
       <header>
-        <Count></Count>
-        <User></User>
+        <h2>Country Loaded : {countries.length}</h2>
+        <h3>Add Country :{addCountry.length} </h3>
+        <AddCountry addCountry ={addCountry}></AddCountry>
+        {/* <Count></Count> */}
         <ul>
+          {
+            countries.map( country => <Country country ={country} handleAddCountry={handleAddCountry} key ={country.flags.svg}></Country>)
+          }
+        </ul>
+        {/* <User></User>
+        <Post></Post> */}
+        {/* <ul>
           {
             products.map(product => <Product product ={product}></Product>)
           }
-        </ul>
+        </ul> */}
 
         
       </header>
